@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>TODO LIST</title>
+  <link rel="stylesheet" href="dist/css/app.css">
+  <script src="https://use.fontawesome.com/e3ae05b8e6.js"></script>
+</head>
+<body>
+
+<div class="main">
+  <h1 class="mainTitle">TODOS</h1>
+
+  <section class="section">
+    <div id="app1">
+      <span v-if=" isShow === 'a' ">v-ifを使って、domの表示非表示が簡単に出来る。非表示だとDOM自体なくなるので注意！</span>
+      <span v-else-if=" isShow === 'b' ">v-else-ifのタグ。必ずv-ifと同列の要素にしか指定できない</span>
+      <span v-else>v-elseのタグ。必ずv-ifと同列の要素にしか指定できない</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div id="app2">
+      <span v-show="isShow">v-showで表示したタグ</span>
+      <span v-show="!isShow">v-showで見えなくなっただけのタグ（display:noneにしただけ）</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div id="app3">
+      <input type="checkbox" v-model="isShow">
+      <p>isShow: {{isShow}}</p>
+      <p>showString: {{showString}}</p>
+      <p>showStringMethods: {{ showStringMethods() }}</p>
+      <p>showString2: {{showString2}}</p>
+      <p>showStringMethods2: {{ showStringMethods2() }}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div id="app4">
+      <p>{{script}}</p>
+      <p v-html="script"></p>
+    </div>
+  </section>
+
+
+  <style>
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    {
+      opacity: 0;
+    }
+  </style>
+
+  <section class="section">
+    <div id="app6">
+      <button v-on:click="show = !show">
+        Toggle
+      </button>
+      <transition name="fade">
+        <p v-if="show">hello</p>
+      </transition>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div id="app7">
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+    </div>
+  </section>
+
+  <section class="section">
+    <div id="app8">
+      <blog-post title="こうやってtitleプロパティをpropsで渡せます。"></blog-post>
+      <blog-post title="それぞれのコンポーネントにtitleのpropsを渡せます。"></blog-post>
+      <blog-post title="reactのpropsと同じ機能です。"></blog-post>
+    </div>
+  </section>
+
+  <section class="section">
+    <div id="app9">
+      <div id="blog-posts-events-demo">
+        <div :style="{ fontSize: postFontSize + 'em' }">
+          <blog-post
+                  v-for="post in posts"
+                  v-on:enlarge-text="fontSizeScale()"
+                  v-bind:key="post.id"
+                  v-bind:post="post"
+          ></blog-post>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div>
+
+<script src="dist/js/bundle.js"></script>
+</body>
+</html>
